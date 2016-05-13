@@ -1,0 +1,192 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="sv" xml:lang="sv">
+    <head runat="server">
+        <meta charset="utf-8" />
+        <meta name="author" content="Linus Johannesson" />
+        <meta name="description" content="Tentamenssytem för universitet och högskolor" />
+        
+        <link rel="icon" href="favicon.ico" />
+
+        <title>Tentamenssystem</title>
+
+        <!-- CSS -->
+        <link href="Content/bootstrap.min.css" rel="stylesheet" />
+        <link href="local/tentamen.css" rel="stylesheet" />
+        <link href="local/jquery.cookiebar.css" rel="stylesheet" />
+
+        <asp:ContentPlaceHolder id="head" runat="server"></asp:ContentPlaceHolder>
+
+    </head>
+<body>
+    <form id="form1" runat="server">
+      
+<header>
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+
+            <span class="sr-only">Meny</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+
+          </button>
+
+            <asp:HyperLink ID="linkBrand" runat="server" NavigateUrl="~/Default.aspx" CssClass="navbar-brand">LITUS</asp:HyperLink>
+
+        </div>
+
+        <div id="navbar" class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+
+            <li><asp:HyperLink ID="linkStart" runat="server" NavigateUrl="~/Default.aspx">Startsidan</asp:HyperLink></li>
+            <li><asp:HyperLink ID="linkOm" runat="server" NavigateUrl="~/Om.aspx">Om systemet</asp:HyperLink></li>
+      
+
+<asp:LoginView ID="lvUser" runat="server">
+<LoggedInTemplate>
+
+        <asp:LoginView ID="lvAdmin" runat="server">
+            <RoleGroups>
+                <asp:RoleGroup Roles="Administratör">
+                    <ContentTemplate>
+                        <!-- ADMIN-DROPDOWN -->
+
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Administratör <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><asp:HyperLink ID="linkUsers" runat="server" NavigateUrl="~/Admin/Users.aspx">Användare</asp:HyperLink></li>
+                                <li><asp:HyperLink ID="LinkNewUser" runat="server" NavigateUrl="~/Admin/NewUser.aspx">Ny användare</asp:HyperLink></li>
+                            </ul>
+                        </li>
+
+                    </ContentTemplate>
+                </asp:RoleGroup>
+            </RoleGroups>
+        </asp:LoginView>
+
+
+
+        <asp:LoginView ID="lvExminator" runat="server">
+            <RoleGroups>
+                <asp:RoleGroup Roles="Examinator">
+                    <ContentTemplate>
+                        <!-- EXAMINATOR-DROPDOWN -->
+                        
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Examinator <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><asp:HyperLink ID="linkExaminatorTentamen" runat="server" NavigateUrl="~/Examinator/RedigeraTentamen.aspx">Mina tentor</asp:HyperLink></li>
+                            </ul>
+                        </li>
+
+                    </ContentTemplate>
+                </asp:RoleGroup>
+            </RoleGroups>
+        </asp:LoginView>
+    
+        <asp:LoginView ID="lvStudent" runat="server">
+            <RoleGroups>
+                <asp:RoleGroup Roles="Student">
+                    <ContentTemplate>
+                        <!-- STUDENT-DROPDOWN -->
+                        
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Student <span class="caret"></span></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><asp:HyperLink ID="linkStudentTentamen" runat="server" NavigateUrl="~/Student/BesvaraTentamen.aspx">Mina tentor</asp:HyperLink></li>
+                            </ul>
+                        </li>
+
+                    </ContentTemplate>
+                </asp:RoleGroup>
+            </RoleGroups>
+        </asp:LoginView>
+</LoggedInTemplate>
+</asp:LoginView>
+
+          </ul>
+            
+        <!-- INLOGGNING OCH MENY LÄNGST UPP TILL HÖGER -->
+        <asp:LoginView ID="MasterLoginView" runat="server">
+            <AnonymousTemplate>
+
+                <div class="navbar-form navbar-right">
+
+                    <asp:Login ID="MasterLogin" runat="server" DestinationPageUrl="~/Default.aspx">
+                        <LayoutTemplate>
+       
+                        <asp:TextBox ID="UserName" runat="server" placeholder="Användarnamn" CssClass="form-control" required="required"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName" ErrorMessage="Användarnamn måste anges." ToolTip="Användarnamn måste anges." ValidationGroup="MasterLoginGroup" CssClass="validator">*</asp:RequiredFieldValidator>
+
+                        <asp:TextBox ID="Password" runat="server" TextMode="Password" placeholder="Lösenord" CssClass="form-control" required="required"></asp:TextBox>
+                            <asp:RequiredFieldValidator ID="PasswordRequired" runat="server" ControlToValidate="Password" ErrorMessage="Lösenord måste anges." ToolTip="Lösenord måste anges." ValidationGroup="MasterLoginGroup" CssClass="validator">*</asp:RequiredFieldValidator>
+    
+                        <asp:Button ID="LoginButton" runat="server" CommandName="Login" ValidationGroup="MasterLoginGroup"  Text="Logga in" CssClass="btn btn-success" />
+                            <asp:Literal ID="FailureText" runat="server" EnableViewState="False"></asp:Literal>
+        
+                        </LayoutTemplate>
+                    </asp:Login>
+                </div>
+
+            </AnonymousTemplate>
+
+            <LoggedInTemplate>
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                    <asp:Label ID="lblFnamn" runat="server"></asp:Label> <asp:Label ID="lblEnamn" runat="server"></asp:Label> <span class="caret"></span>
+            
+                        <ul class="dropdown-menu" role="menu">
+                            <li><asp:HyperLink ID="linkChangePassword" runat="server" NavigateUrl="~/User/ChangePassword.aspx">Ändra lösenord</asp:HyperLink></li>
+                            <li><asp:HyperLink ID="linkEditProfile" runat="server" NavigateUrl="~/User/EditProfile.aspx">Ändra uppgifter</asp:HyperLink></li>
+
+                        </ul>
+                </li>
+                <li><asp:LoginStatus ID="MasterLoginStatus" runat="server" LogoutAction="Redirect" LogoutPageUrl="~/Utloggad.aspx"/></li>
+            </ul>
+
+            </LoggedInTemplate>
+        </asp:LoginView>
+
+        </div><!--/.nav-collapse -->
+
+      </div>
+    </nav>
+
+</header>
+
+<div class="kaka"></div>
+    <div class="container">          
+        <asp:ContentPlaceHolder id="ContentPlaceHolder1" runat="server"></asp:ContentPlaceHolder>
+    </div><!-- /.container -->
+
+        
+           <footer class="footer">
+               <div class="container">
+                   <p class="text-muted">
+                       LITUS - Tentamenssystem för universitet och högskolor<br />
+                       Linus Johannesson VT-2015
+                       </p>
+                   </div>
+           </footer>
+
+
+
+    </form>
+
+    <!-- JS - Ligger sist för att ladda sidan snabbare -->
+    <script src="../Scripts/jquery-2.1.4.min.js"></script>
+    <script src="../Scripts/bootstrap.min.js"></script>
+    <script src="../local/tentamen.js"></script>
+    <script src="../local/bs.pagination.js"></script>
+    <script src="../local/jquery.cookiebar.js"></script>
+    
+</body>
+</html>
