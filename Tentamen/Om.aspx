@@ -7,8 +7,12 @@
     <p>
         LITUS är ett tentamenssystem för högskolor och universitet.
         Det är utvecklat av Linus Johannesson.
-        Systemet är projektet som görs i kursen 1IK213,
+        Systemet är resultatet av projektet i kursen 1IK213,
         Webbapplikationer och distribuerad datalagring. Kursen ges på Linnéuniversitetet våren 2015.
+    </p>
+
+    <p>
+        Våren 2016 används systemet i skarpt läge på kursen 1IK213, Webbapplikationer och distribuerad datalagring på Linnéuniversitetet.
     </p>
 
     <h2>Cookies</h2>

@@ -49,3 +49,9 @@ body
 {
     color: #ff0000;
 }
+
+.bilder
+{
+    width: 100%;
+    border-radius: 5px;
+}

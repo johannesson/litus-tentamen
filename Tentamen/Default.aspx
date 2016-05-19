@@ -14,34 +14,43 @@
 
     <div class="col-md-4">
         <h3>För examinatorer</h3>
+
+        <img src="bilder/student_bakom_ryggen.jpg" class="bilder" />
+
         <p>
-            Är du examinator har du möjlighet att skapa tentamen, lägga till frågor och koppla studenter till en tentamen.
+            Examinatorer har möjlighet att skapa tentamen, lägga till frågor och koppla studenter till tentamen.
         </p>
         <p>
-            När studenterna slutfört sin tentamen kan du se studentens svar och ge poäng. Det är också möjligt att lämna en kommentar.
+            När studenterna slutfört sin tentamen kan examinatorn se studentens svar och ge poäng. Det är också möjligt att lämna en kommentar på varje svar.
         </p>
+        
     </div>
 
     <div class="col-md-4">
         <h3>För studenter</h3>
-        <p>
-            Är du student har du möjlighet att svara på tentamen.
-        </p>
-        <p>
-            När examinatorn rättat din tentamen kan du se poäng och kommentarer på dina svar.
-        </p>
 
+        <img src="bilder/studenter_skriver_tenta.jpg" class="bilder" />
+
+        <p>
+            Studenter har möjlighet att besvara tentamen i systemet.
+        </p>
+        <p>
+            När examinatorn rättat studentens tentamen är det möjligt att se totalpoäng samt poäng och kommentar på varje svar.
+        </p>
+        
     </div>
     <div class="col-md-4 ">
-        <h3>För adminstratörer</h3>
+        <h3>För administratörer</h3>
+        
+        <img src="bilder/narbild_student_laptop.jpg" class="bilder" />
+
         <p>
-            Administratörer har koll på alla användare som arbetar i systemet.
+            Administratörer hanterar alla användare som arbetar i systemet.
         </p>
         <p>
-            Här finns möjlighet att skapa och ta bort studenter, examinatorer och administratörer.
+            Här finns möjlighet att skapa och ta bort användare samt tilldela rollerna student, examinator och administratör.
         </p>
-
-
+        
     </div>
            
     </asp:Content>
