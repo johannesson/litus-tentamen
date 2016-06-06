@@ -99,6 +99,34 @@ public partial class Examinator_RedigeraTentamen : System.Web.UI.Page
                     (e.Row.FindControl("btnGranskad") as Button).Enabled = true;
                 }
             }
+
+            //Ändrat 2016-06-02
+            //Räknar ut poäng om tentan är granskad
+            SqlConnection conn = new SqlConnection(Global.db);
+
+            //Hämtar maxpoäng för tentamen
+            SqlCommand sqlKollaMaxpoang = new SqlCommand("SELECT sum(maxpoang) FROM uppgift WHERE tentamen_id = @aktivBesvaradTentamen ", conn);
+            sqlKollaMaxpoang.Parameters.AddWithValue("@aktivBesvaradTentamen", view["tentamen_id"]);
+
+            //Hämtar total poäng för tentamen
+            SqlCommand sqlKollaPoang = new SqlCommand("SELECT sum(poang) FROM besvaraduppgift WHERE besvaradtentamen_id = @aktivBesvaradTentamen ", conn);
+            sqlKollaPoang.Parameters.AddWithValue("@aktivBesvaradTentamen", view[0]);
+
+            using (conn)
+            {
+                conn.Open();
+
+                string maxpoang = sqlKollaMaxpoang.ExecuteScalar().ToString();
+                string poang = sqlKollaPoang.ExecuteScalar().ToString();
+
+                if (poang == "")
+                    poang = "0";
+
+                conn.Close();
+
+                (e.Row.FindControl("lblPoang") as Label).Text = poang + " av " + maxpoang;
+            }
+
         }
     }
 

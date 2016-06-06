@@ -542,6 +542,14 @@
                                 <asp:BoundField DataField="paborjad" HeaderText="Påbörjad" SortExpression="paborjad" />
                                 <asp:BoundField DataField="avslutad" HeaderText="Avslutad" SortExpression="avslutad" />
                                 <asp:BoundField DataField="granskad" HeaderText="Rättad" SortExpression="granskad" />
+                                <asp:TemplateField>
+                                    <HeaderTemplate>
+                                        Poäng
+                                    </HeaderTemplate>
+                                    <ItemTemplate>
+                                        <asp:Label ID="lblPoang" runat="server" Text="Poäng"></asp:Label>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                                 <asp:TemplateField ShowHeader="False">
                                     <ItemTemplate>
                                         <asp:Button ID="btnGranska" runat="server" CausesValidation="False" CommandArgument='<%# Bind("id") %>' CommandName="GranskaTentamen" CssClass="btn btn-primary" Enabled="False" Text="Rätta" />
